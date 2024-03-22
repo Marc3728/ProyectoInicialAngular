@@ -1,1 +1,4 @@
 .eslintrc.json -text eol=lf
+.angular.json -text eol=lf
+.package-lock.json -text eol=lf
+.package.json -text eol=lf

@@ -1,0 +1,6 @@
+<img [src]="'../assets/' + similarProduct.img" alt="similarproduct" />
+<div class="d-flex flex-column align-items-center justify-content-center">
+  <h5>{{ similarProduct.product }}</h5>
+  <app-stars-rating [starsRating]="similarProduct.rating"></app-stars-rating>
+  <h5>{{ similarProduct.price }} {{ similarProduct.currency }}</h5>
+</div>

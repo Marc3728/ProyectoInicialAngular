@@ -7,6 +7,7 @@ export interface Product {
   rating: number;
   description: String;
   img: String;
+  favorite: boolean;
   similarProducts: any[];
   reviews: Review[] | null;
 }

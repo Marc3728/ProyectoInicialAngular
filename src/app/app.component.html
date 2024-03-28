@@ -86,7 +86,7 @@
               <h3 class="mt-4">Products</h3>
               <div
                 *ngFor="let product of products"
-                (click)="changeProduct(product.product)"
+                (click)="changeProduct(product)"
                 class="products-container d-flex mt-4"
               >
                 <div
@@ -99,46 +99,16 @@
             </div>
           </div>
         </nav>
-        <div class="col-12 col-md-9 border">
-          <div class="row product-info">
-            <div class="col-12 col-sm-5 col-md-12 col-lg-5">
-              <img [src]="'../assets/' + product.img" alt="productimg" />
-            </div>
-            <div class="col-12 col-sm-7 col-md-12 col-lg-7">
-              <div class="w-100 p-5 d-flex flex-column">
-                <div class="pb-4 mb-1 d-flex flex-wrap">
-                  <h1 class="w-100 mb-2">{{ product.product }}</h1>
+        <div
+          class="col-12 col-md-9 border"
+          [class]="product.favorite ? 'bg bg-dark text-light' : ''"
+        >
+          <app-product-detail
+            [product]="product"
+            (onDeleteProductClicked)="deleteProduct(product)"
+            (onChangeFavoriteStatusClicked)="changeFavoriteStatus(product)"
+          ></app-product-detail>
 
-                  <div class="d-flex">
-                    <i
-                      *ngFor="let star of getStarsRating(product.rating)"
-                      class="bi"
-                      [class]="star"
-                    ></i>
-                  </div>
-                  <p class="ms-4">
-                    {{ product.reviews ? product.reviews.length : 0 }} reviews
-                  </p>
-                </div>
-                <hr class="w-100" />
-                <div class="pb-4 mb-1 mt-3">
-                  <h2>{{ product.price }} {{ product.currency }}</h2>
-                </div>
-                <hr class="w-100" />
-                <div class="pb-4 mb-1 mt-3">
-                  <p>
-                    {{ product.description }}
-                  </p>
-                </div>
-                <hr class="w-25" />
-                <div class="mt-3">
-                  <button (click)="deleteProduct()" class="w-50 default-button">
-                    Delete Item
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
           <div
             *ngIf="product.similarProducts.length > 0"
             class="row border-top border-bottom similar-products p-4"
@@ -146,31 +116,13 @@
             <div class="col-12 d-flex flex-wrap justify-content-center">
               <h1 class="w-100 text-center mb-2">Similar Products</h1>
 
-              <div
+              <app-similar-product
                 *ngFor="let similarProduct of product.similarProducts"
                 (click)="changeProduct(similarProduct.product)"
                 class="d-flex flex-column align-items-center justify-content-center m-4"
+                [similarProduct]="similarProduct"
               >
-                <img
-                  [src]="'../assets/' + similarProduct.img"
-                  alt="similarproduct"
-                />
-                <div
-                  class="d-flex flex-column align-items-center justify-content-center"
-                >
-                  <h5>{{ similarProduct.product }}</h5>
-                  <div class="d-flex">
-                    <i
-                      *ngFor="let star of getStarsRating(similarProduct.rating)"
-                      class="bi"
-                      [class]="star"
-                    ></i>
-                  </div>
-                  <h5>
-                    {{ similarProduct.price }} {{ similarProduct.currency }}
-                  </h5>
-                </div>
-              </div>
+              </app-similar-product>
             </div>
           </div>
           <div
@@ -194,11 +146,9 @@
                   <h3 class="mt-2 text-center">{{ review.name }}</h3>
                   <p>{{ review.date }}</p>
                   <div class="d-flex">
-                    <i
-                      *ngFor="let star of getStarsRating(review.rating)"
-                      class="bi"
-                      [class]="star"
-                    ></i>
+                    <app-stars-rating
+                      [starsRating]="review.rating"
+                    ></app-stars-rating>
                   </div>
                 </div>
                 <div class="col-12 col-lg-8">

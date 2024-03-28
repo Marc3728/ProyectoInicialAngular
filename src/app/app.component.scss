@@ -44,8 +44,7 @@ nav {
   width: 100px;
 }
 
-.products-container,
-.similar-products > div > div {
+.products-container {
   cursor: pointer;
 }
 
@@ -57,24 +56,8 @@ nav {
   padding: 5px 10px;
 }
 
-.product-info {
-  > div:first-child {
-    img {
-      height: 100%;
-      object-position: center;
-      object-fit: cover;
-    }
-  }
-}
-
 .review {
   > div:first-child > i {
     font-size: 4em;
-  }
-}
-
-.similar-products {
-  img {
-    width: 150px;
   }
 }

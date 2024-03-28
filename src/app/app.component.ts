@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataJson } from './DataJson';
+import { products } from './DataJson';
 import { Product } from './interface/Product';
 
 @Component({
@@ -9,73 +9,47 @@ import { Product } from './interface/Product';
 })
 export class AppComponent {
   title = 'primeraaplicacion';
-  defaultProducts: Product[] = DataJson.getJsonData();
+  defaultProductIndex = 0;
+  defaultProducts: Product[] = [...products];
   products: Product[] = this.defaultProducts;
-  product: Product = this.products[0];
+  product: Product = this.products[this.defaultProductIndex];
+  filterPrice = 2;
+  filterTopRating = 5;
 
-  getStarsRating(rating: number) {
-    let stars = [];
-    let ratingNumber = Math.floor(rating / 0.5);
-
-    for (let i = 0; i < 5; i++) {
-      if (ratingNumber == 0) {
-        stars.push('bi-star');
-      } else {
-        if (ratingNumber > 1) {
-          stars.push('bi-star-fill');
-          ratingNumber = ratingNumber - 2;
-        } else {
-          stars.push('bi-star-half');
-          ratingNumber = 0;
-        }
-      }
-    }
-    return stars;
+  constructor() {
+    console.log(this.products);
   }
 
-  changeProduct(name: String) {
-    this.product = this.defaultProducts.find(
-      (product) => product.product == name
-    )!;
+  changeProduct(product: Product) {
+    this.product = product;
   }
 
-  deleteProduct() {
-    if (this.products.length == 1) {
+  changeFavoriteStatus(product: Product) {
+    product.favorite = !product.favorite;
+  }
+
+  deleteProduct(product: Product) {
+    if (this.isLastProduct()) {
       return;
     }
 
-    let similar =
-      this.product.similarProducts.length > 0
-        ? this.product.similarProducts[0].product
-        : null;
-
-    this.products.splice(this.products.indexOf(this.product), 1);
-
-    this.product = similar
-      ? this.products.find((p) => p.product == similar)!
-      : this.products[0]!;
-
-    this.products.forEach((productIter) => {
-      productIter.similarProducts = productIter.similarProducts.filter(
-        (ps: any) =>
-          this.products.find((p: any) => p.product == ps.product) != undefined
-      );
-    });
+    this.products.splice(this.products.indexOf(product), 1);
+    this.product = this.products[this.defaultProductIndex];
   }
 
   filterProductsLessPrice() {
     this.products = this.defaultProducts.filter(
-      (product) => product.price < 2000
+      (product) => product.price < this.filterPrice
     );
   }
   filterProductsMorePrice() {
     this.products = this.defaultProducts.filter(
-      (product) => product.price >= 2000
+      (product) => product.price >= this.filterPrice
     );
   }
   filterProductsTopRating() {
     this.products = this.defaultProducts.filter(
-      (product) => product.rating == 5
+      (product) => product.rating == this.filterTopRating
     );
   }
 
@@ -83,7 +57,7 @@ export class AppComponent {
     this.products = this.defaultProducts;
   }
 
-  constructor() {
-    console.log(this.products);
+  private isLastProduct() {
+    return this.products.length === 1;
   }
 }

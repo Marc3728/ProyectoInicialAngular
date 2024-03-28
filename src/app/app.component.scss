@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  > li {
+    padding: 0px 20px;
+    &:not(:last-child) {
+      border-right: solid 1px black;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+header {
+  background-color: rgb(14 116 144);
+  font-weight: 700;
+
+  * {
+    border-color: white !important;
+    color: white !important;
+  }
+}
+
+nav {
+  background-color: rgba(165, 243, 252, 0.317);
+}
+
+.container {
+  min-width: 100% !important;
+}
+
+#supermarket-logo {
+  height: auto;
+  width: 100px;
+}
+
+.products-container,
+.similar-products > div > div {
+  cursor: pointer;
+}
+
+.default-button {
+  border: 0px;
+  background-color: rgb(94, 94, 94);
+  box-shadow: 0px 0px 4px black;
+  color: white;
+  padding: 5px 10px;
+}
+
+.product-info {
+  > div:first-child {
+    img {
+      height: 100%;
+      object-position: center;
+      object-fit: cover;
+    }
+  }
+}
+
+.review {
+  > div:first-child > i {
+    font-size: 4em;
+  }
+}
+
+.similar-products {
+  img {
+    width: 150px;
+  }
+}

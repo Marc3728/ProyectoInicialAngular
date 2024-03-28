@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="row p-4 border">
+        <div class="col-12 col-md-6">
+          <img
+            src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/supermarket-logo-design-template-78917b1e696887b11a9012a133e26755_screen.jpg?ts=1704864747"
+            alt="supermarketlogo"
+            id="supermarket-logo"
+          />
+        </div>
+        <div class="col-12 col-md-6">
+          <div
+            class="w-100 h-100 d-flex justify-content-end align-items-center"
+          >
+            <ul class="d-flex">
+              <li><a href="">Home</a></li>
+              <li><a href="">About</a></li>
+              <li><a href="">Shop</a></li>
+              <li><a href="">Help</a></li>
+            </ul>
+            <button class="default-button">
+              <i class="bi bi-cart-fill"></i> Your Cart
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="row">
+        <nav class="col-12 col-md-3 border">
+          <div class="w-100 h-100 d-flex flex-column p-4">
+            <button
+              (click)="filterProductsLessPrice()"
+              class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+            >
+              Filter less 2000 &euro;
+            </button>
+            <button
+              (click)="filterProductsLessPrice()"
+              class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+            >
+              Filter less 2000 &euro;
+            </button>
+            <button
+              (click)="filterProductsMorePrice()"
+              class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+            >
+              Filter more 2000 &euro;
+            </button>
+            <button
+              (click)="filterProductsMorePrice()"
+              class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+            >
+              Filter more 2000 &euro;
+            </button>
+            <button
+              (click)="filterProductsTopRating()"
+              class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+            >
+              Filter top rating
+            </button>
+            <button
+              (click)="filterProductsTopRating()"
+              class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+            >
+              Filter top rating
+            </button>
+            <button
+              (click)="resetFilters()"
+              class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+            >
+              Reset Filter
+            </button>
+            <button
+              (click)="resetFilters()"
+              class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+            >
+              Reset Filter
+            </button>
+            <div class="w-100">
+              <h3 class="mt-4">Products</h3>
+              <div
+                *ngFor="let product of products"
+                (click)="changeProduct(product.product)"
+                class="products-container d-flex mt-4"
+              >
+                <div
+                  class="w-100 d-flex justify-content-between border-bottom pb-2"
+                >
+                  <p>{{ product.product }}</p>
+                  <i class="bi bi-caret-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <div class="col-12 col-md-9 border">
+          <div class="row product-info">
+            <div class="col-12 col-sm-5 col-md-12 col-lg-5">
+              <img [src]="'../assets/' + product.img" alt="productimg" />
+            </div>
+            <div class="col-12 col-sm-7 col-md-12 col-lg-7">
+              <div class="w-100 p-5 d-flex flex-column">
+                <div class="pb-4 mb-1 d-flex flex-wrap">
+                  <h1 class="w-100 mb-2">{{ product.product }}</h1>
+
+                  <div class="d-flex">
+                    <i
+                      *ngFor="let star of getStarsRating(product.rating)"
+                      class="bi"
+                      [class]="star"
+                    ></i>
+                  </div>
+                  <p class="ms-4">
+                    {{ product.reviews ? product.reviews.length : 0 }} reviews
+                  </p>
+                </div>
+                <hr class="w-100" />
+                <div class="pb-4 mb-1 mt-3">
+                  <h2>{{ product.price }} {{ product.currency }}</h2>
+                </div>
+                <hr class="w-100" />
+                <div class="pb-4 mb-1 mt-3">
+                  <p>
+                    {{ product.description }}
+                  </p>
+                </div>
+                <hr class="w-25" />
+                <div class="mt-3">
+                  <button (click)="deleteProduct()" class="w-50 default-button">
+                    Delete Item
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="product.similarProducts.length > 0"
+            class="row border-top border-bottom similar-products p-4"
+          >
+            <div class="col-12 d-flex flex-wrap justify-content-center">
+              <h1 class="w-100 text-center mb-2">Similar Products</h1>
+
+              <div
+                *ngFor="let similarProduct of product.similarProducts"
+                (click)="changeProduct(similarProduct.product)"
+                class="d-flex flex-column align-items-center justify-content-center m-4"
+              >
+                <img
+                  [src]="'../assets/' + similarProduct.img"
+                  alt="similarproduct"
+                />
+                <div
+                  class="d-flex flex-column align-items-center justify-content-center"
+                >
+                  <h5>{{ similarProduct.product }}</h5>
+                  <div class="d-flex">
+                    <i
+                      *ngFor="let star of getStarsRating(similarProduct.rating)"
+                      class="bi"
+                      [class]="star"
+                    ></i>
+                  </div>
+                  <h5>
+                    {{ similarProduct.price }} {{ similarProduct.currency }}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            *ngIf="product.reviews && product.reviews.length > 0"
+            class="row p-4"
+          >
+            <div class="col-12 mb-4">
+              <h1>Reviews</h1>
+            </div>
+            <div class="col-12 pt-2 mb-4">
+              <div
+                *ngFor="let review of product.reviews"
+                class="row review mb-2 pb-2"
+              >
+                <div class="col-12 col-lg-1 d-flex justify-content-center">
+                  <i class="bi bi-person-circle"></i>
+                </div>
+                <div
+                  class="col-12 col-lg-3 mb-2 d-flex flex-column align-items-center"
+                >
+                  <h3 class="mt-2 text-center">{{ review.name }}</h3>
+                  <p>{{ review.date }}</p>
+                  <div class="d-flex">
+                    <i
+                      *ngFor="let star of getStarsRating(review.rating)"
+                      class="bi"
+                      [class]="star"
+                    ></i>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-8">
+                  <p>
+                    {{ review.opinion }}
+                  </p>
+                </div>
+
+                <hr class="w-25 d-none d-md-block" />
+                <hr class="w-100 d-block d-md-none" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

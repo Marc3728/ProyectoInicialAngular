@@ -1,37 +1,13 @@
 <div class="container">
-  <header class="row p-4 border">
-    <div class="col-12 col-md-6">
-      <img
-        src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/supermarket-logo-design-template-78917b1e696887b11a9012a133e26755_screen.jpg?ts=1704864747"
-        alt="supermarketlogo"
-        id="supermarket-logo"
-      />
-    </div>
-    <div class="col-12 col-md-6">
-      <div class="w-100 h-100 d-flex justify-content-end align-items-center">
-        <ul class="d-flex">
-          <li><a href="">Home</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Shop</a></li>
-          <li><a href="">Help</a></li>
-        </ul>
-        <button class="default-button">
-          <i class="bi bi-cart-fill"></i> Your Cart
-        </button>
-      </div>
-    </div>
-  </header>
+  <app-header></app-header>
   <div class="row">
     <aside class="col-12 col-md-3 border">
       <app-aside
         [products]="products"
         [productSelected]="product"
-        [filterStyles]="filterStyles"
+        [activeFilter]="activeFilter"
         (onChangeProduct)="changeProduct($event)"
-        (onFilterProductsLessPrice)="filterProductsLessPrice()"
-        (onFilterProductsMorePrice)="filterProductsMorePrice()"
-        (onFilterProductsTopRating)="filterProductsTopRating()"
-        (onResetFilters)="resetFilters()"
+        (onChangeFilter)="changeFilter($event)"
       >
       </app-aside>
     </aside>

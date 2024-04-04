@@ -1,54 +1,54 @@
 <div class="w-100 h-100 d-flex flex-column p-4">
   <button
-    (click)="filterProductsLessPrice()"
+    (click)="changeFilter('lessPrice')"
     class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
-    [class]="filterStyles[0]"
+    [class]="activeFilter == 'lessPrice' ? 'bg bg-primary' : ''"
   >
     Filter less 2 &euro;
   </button>
   <button
-    (click)="filterProductsLessPrice()"
+    (click)="changeFilter('lessPrice')"
     class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
-    [class]="filterStyles[0]"
+    [class]="activeFilter == 'lessPrice' ? 'bg bg-primary' : ''"
   >
     Filter less 2 &euro;
   </button>
   <button
-    (click)="filterProductsMorePrice()"
+    (click)="changeFilter('morePrice')"
     class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
-    [class]="filterStyles[1]"
+    [class]="activeFilter == 'morePrice' ? 'bg bg-primary' : ''"
   >
     Filter more 2 &euro;
   </button>
   <button
-    (click)="filterProductsMorePrice()"
+    (click)="changeFilter('morePrice')"
     class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
-    [class]="filterStyles[1]"
+    [class]="activeFilter == 'morePrice' ? 'bg bg-primary' : ''"
   >
     Filter more 2 &euro;
   </button>
   <button
-    (click)="filterProductsTopRating()"
+    (click)="changeFilter('topRating')"
     class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
-    [class]="filterStyles[2]"
+    [class]="activeFilter == 'topRating' ? 'bg bg-primary' : ''"
   >
     Filter top rating
   </button>
   <button
-    (click)="filterProductsTopRating()"
+    (click)="changeFilter('topRating')"
     class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
-    [class]="filterStyles[2]"
+    [class]="activeFilter == 'topRating' ? 'bg bg-primary' : ''"
   >
     Filter top rating
   </button>
   <button
-    (click)="resetFilters()"
+    (click)="changeFilter('')"
     class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
   >
     Reset Filter
   </button>
   <button
-    (click)="resetFilters()"
+    (click)="changeFilter('')"
     class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
   >
     Reset Filter

@@ -15,13 +15,14 @@ export class AppComponent {
   product: Product = this.products[this.defaultProductIndex];
   filterPrice = 2;
   filterTopRating = 5;
+  filterStyles = ['', '', ''];
 
   constructor() {
     console.log(this.products);
   }
 
-  changeProduct(product: Product) {
-    this.product = product;
+  changeProduct(productChange: Product) {
+    this.product = productChange;
   }
 
   changeFavoriteStatus(product: Product) {
@@ -41,23 +42,39 @@ export class AppComponent {
     this.products = this.defaultProducts.filter(
       (product) => product.price < this.filterPrice
     );
+    this.changeFilterStyle(0);
   }
   filterProductsMorePrice() {
     this.products = this.defaultProducts.filter(
       (product) => product.price >= this.filterPrice
     );
+    this.changeFilterStyle(1);
   }
   filterProductsTopRating() {
     this.products = this.defaultProducts.filter(
       (product) => product.rating == this.filterTopRating
     );
+    this.changeFilterStyle(2);
   }
 
   resetFilters() {
     this.products = this.defaultProducts;
+    this.resetFilterStyles();
   }
 
   private isLastProduct() {
     return this.products.length === 1;
+  }
+
+  private changeFilterStyle(indexFilter: number) {
+    let isSelected = this.filterStyles[indexFilter] !== '';
+    this.resetFilterStyles();
+    isSelected
+      ? this.resetFilters()
+      : (this.filterStyles[indexFilter] = 'bg bg-primary');
+  }
+
+  private resetFilterStyles() {
+    this.filterStyles.fill('', 0, this.filterStyles.length);
   }
 }

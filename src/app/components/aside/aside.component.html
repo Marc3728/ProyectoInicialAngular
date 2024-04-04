@@ -1,0 +1,74 @@
+<div class="w-100 h-100 d-flex flex-column p-4">
+  <button
+    (click)="filterProductsLessPrice()"
+    class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+    [class]="filterStyles[0]"
+  >
+    Filter less 2 &euro;
+  </button>
+  <button
+    (click)="filterProductsLessPrice()"
+    class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+    [class]="filterStyles[0]"
+  >
+    Filter less 2 &euro;
+  </button>
+  <button
+    (click)="filterProductsMorePrice()"
+    class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+    [class]="filterStyles[1]"
+  >
+    Filter more 2 &euro;
+  </button>
+  <button
+    (click)="filterProductsMorePrice()"
+    class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+    [class]="filterStyles[1]"
+  >
+    Filter more 2 &euro;
+  </button>
+  <button
+    (click)="filterProductsTopRating()"
+    class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+    [class]="filterStyles[2]"
+  >
+    Filter top rating
+  </button>
+  <button
+    (click)="filterProductsTopRating()"
+    class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+    [class]="filterStyles[2]"
+  >
+    Filter top rating
+  </button>
+  <button
+    (click)="resetFilters()"
+    class="default-button w-50 mb-2 d-md-none d-sm-block d-lg-block"
+  >
+    Reset Filter
+  </button>
+  <button
+    (click)="resetFilters()"
+    class="default-button w-100 mb-2 d-none d-lg-none d-md-block"
+  >
+    Reset Filter
+  </button>
+  <div class="w-100">
+    <h3 class="mt-4">Products</h3>
+    <div
+      *ngFor="let product of products"
+      (click)="changeProduct(product)"
+      class="products-container d-flex mt-4"
+    >
+      <div
+        class="w-100 d-flex justify-content-between border-bottom pb-2"
+        [class]="
+          productSelected.product === product.product ? 'text-primary' : ''
+        "
+      >
+        <p>{{ product.product }}</p>
+        <i class="bi bi-caret-right"></i>
+      </div>
+    </div>
+  </div>
+</div>

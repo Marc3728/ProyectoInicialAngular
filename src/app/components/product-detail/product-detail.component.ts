@@ -8,13 +8,13 @@ import { Product } from 'src/app/interface/Product';
 })
 export class ProductDetailComponent {
   @Input() product: Product = {} as Product;
-  @Output() onDeleteProductClicked: EventEmitter<Product> = new EventEmitter();
-  @Output() onChangeFavoriteStatusClicked: EventEmitter<Product> =
+  @Output() onDeleteProductClicked: EventEmitter<void> = new EventEmitter();
+  @Output() onChangeFavoriteStatusClicked: EventEmitter<void> =
     new EventEmitter();
   deleteProduct() {
-    this.onDeleteProductClicked.emit(this.product);
+    this.onDeleteProductClicked.emit();
   }
   changeFavoriteStatus() {
-    this.onChangeFavoriteStatusClicked.emit(this.product);
+    this.onChangeFavoriteStatusClicked.emit();
   }
 }

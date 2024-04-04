@@ -11,12 +11,12 @@ export class StarsRatingComponent {
   getStarsColor(starsRating: number): String {
     return starsRating < 3
       ? 'red'
-      : starsRating > 3 && starsRating < 4
+      : starsRating >= 3 && starsRating <= 4
       ? 'orange'
       : 'goldenrod';
   }
 
-  getStarsRating(rating: number) {
+  /* getStarsRating2(rating: number) {
     let stars = [];
     let ratingNumber = Math.floor(rating / 0.5);
 
@@ -34,5 +34,22 @@ export class StarsRatingComponent {
       }
     }
     return stars;
+  } */
+
+  refillStarsRating(rating: number) {
+    let stars = new Array(5).fill('bi-star');
+    let intRating = Math.trunc(rating);
+
+    stars.fill('bi-star-fill', 0, intRating);
+    this.hasHalfStar(rating) ? (stars[intRating] = 'bi-star-half') : null;
+
+    return stars;
+  }
+
+  changeRating(rating: number) {
+    this.starsRating = rating;
+  }
+  private hasHalfStar(rating: number) {
+    return rating - Math.trunc(rating) > 0;
   }
 }

@@ -31,7 +31,7 @@ header {
   }
 }
 
-nav {
+aside {
   background-color: rgba(165, 243, 252, 0.317);
 }
 
@@ -54,10 +54,4 @@ nav {
   box-shadow: 0px 0px 4px black;
   color: white;
   padding: 5px 10px;
-}
-
-.review {
-  > div:first-child > i {
-    font-size: 4em;
-  }
 }

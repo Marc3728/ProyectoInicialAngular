@@ -1,8 +1,8 @@
-<div class="d-flex">
+<div class="d-flex" [style.color]="getStarsColor(starsRating)">
   <i
-    *ngFor="let star of getStarsRating(starsRating)"
+    *ngFor="let star of refillStarsRating(starsRating); let i = index"
     class="bi"
     [class]="star"
-    [style.color]="getStarsColor(starsRating)"
+    (click)="changeRating(i + 1)"
   ></i>
 </div>

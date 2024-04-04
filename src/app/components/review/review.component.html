@@ -1,0 +1,18 @@
+<div class="col-12 col-lg-1 d-flex justify-content-center">
+  <i class="bi bi-person-circle"></i>
+</div>
+<div class="col-12 col-lg-3 mb-2 d-flex flex-column align-items-center">
+  <h3 class="mt-2 text-center">{{ review.name }}</h3>
+  <p>{{ review.date }}</p>
+  <div class="d-flex">
+    <app-stars-rating [starsRating]="review.rating"></app-stars-rating>
+  </div>
+</div>
+<div class="col-12 col-lg-8">
+  <p>
+    {{ review.opinion }}
+  </p>
+</div>
+
+<hr class="w-25 d-none d-md-block" />
+<hr class="w-100 d-block d-md-none" />

@@ -1,0 +1,37 @@
+.welcomeimage {
+  height: 300px;
+  background-image: url("https://img.freepik.com/fotos-premium/pasillo-estantes-supermercado-carro-compras-vacio-desenfocado-interior-desenfocado-fondo-claro-bokeh_293060-4677.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+* > form {
+  margin-top: 10px;
+  input {
+    padding: 0px 5px;
+    border-radius: 10px;
+  }
+  button {
+    background: none;
+    border-radius: 10px;
+    padding: 0px 5px;
+    font-weight: 700;
+    margin-left: 10px;
+  }
+  &:last-child {
+    button {
+      color: white;
+      border-color: white;
+    }
+  }
+}
+
+.imginfoabout {
+  height: 200px;
+}
+
+.footerabout {
+  background-color: rgb(14 116 144);
+  padding: 20px 0px;
+}

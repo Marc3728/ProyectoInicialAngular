@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Review } from 'src/app/interface/Review';
+import { Review } from '../../interface/Review';
 
 @Component({
   selector: 'app-review',

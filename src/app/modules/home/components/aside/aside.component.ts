@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from 'src/app/interface/Product';
+import { Product } from '../../interface/Product';
 
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
-  styleUrls: ['./aside.component.scss', '../../app.component.scss'],
+  styleUrls: ['./aside.component.scss', '../../../../app.component.scss'],
 })
 export class AsideComponent {
   @Input() products: Product[] = {} as Product[];

@@ -3,5 +3,5 @@ export interface Review {
   name: String;
   rating: number;
   opinion: String;
-  date: String;
+  date: Date;
 }

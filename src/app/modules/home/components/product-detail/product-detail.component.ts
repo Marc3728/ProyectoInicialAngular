@@ -12,10 +12,15 @@ import { Product } from '../../interface/Product';
 export class ProductDetailComponent {
   @Input() product: Product = {} as Product;
   @Output() onDeleteProductClicked: EventEmitter<void> = new EventEmitter();
+  @Output() onAddCartClicked: EventEmitter<void> = new EventEmitter();
   @Output() onChangeFavoriteStatusClicked: EventEmitter<void> =
     new EventEmitter();
   deleteProduct() {
     this.onDeleteProductClicked.emit();
+  }
+  addCart() {
+    this.onAddCartClicked.emit();
+    console.log('hola');
   }
   changeFavoriteStatus() {
     this.onChangeFavoriteStatusClicked.emit();

@@ -1,0 +1,40 @@
+<div class="row">
+  <div
+    class="col-12 welcomeimage d-flex justify-content-center align-items-center"
+  >
+    <div class="d-flex flex-column align-items-center">
+      <h1>Suscribe form more info</h1>
+      <form action="">
+        <input placeholder="Enter your email" type="text" />
+        <button>SUSCRIBE</button>
+      </form>
+      <p class="mt-2">Suscribe to receive updates and join our list</p>
+    </div>
+  </div>
+  <div class="col-12 mt-4">
+    <h2 class="w-100 text-center mb-4">About us</h2>
+    <div class="row">
+      <div
+        *ngFor="let card of aboutCards"
+        class="col-10 col-md-4 mb-5 mx-auto text-center"
+      >
+        <app-about-card [card]="card"></app-about-card>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="col-12 mt-4 footerabout text-light d-flex justify-content-center align-items-center"
+  >
+    <div class="d-flex flex-column align-items-center">
+      <h1>Needs more info</h1>
+
+      <p>Send me a email to get more info about products</p>
+      <br />
+      <form action="">
+        <input placeholder="Enter your email" type="text" />
+        <button>SEND</button>
+      </form>
+    </div>
+  </div>
+</div>

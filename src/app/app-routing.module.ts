@@ -1,25 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './modules/home/components/home/home.component';
+import { HomeComponent } from './modules/home/home.component';
 import { HomeModule } from './modules/home/home.module';
-import { AboutComponent } from './modules/about/components/about/about.component';
+import { AboutComponent } from './modules/about/about.component';
 import { AboutModule } from './modules/about/about.module';
-import { ManagmentComponent } from './modules/managment/components/managment/managment.component';
+import { ManagmentComponent } from './modules/managment/managment.component';
 import { loggedGuard } from './guards/logged.guard';
 import { ManagmentModule } from './modules/managment/managment.module';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    loadChildren: () =>
+      import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'about',
-    component: AboutComponent,
+    loadChildren: () =>
+      import('./modules/about/about.module').then((m) => m.AboutModule),
   },
   {
     path: 'managment',
-    component: ManagmentComponent,
+    loadChildren: () =>
+      import('./modules/managment/managment.module').then(
+        (m) => m.ManagmentModule
+      ),
     canActivate: [loggedGuard],
   },
   {

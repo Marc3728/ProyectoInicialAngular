@@ -9,15 +9,17 @@
   <div class="col-12 col-md-6">
     <div class="w-100 h-100 d-flex justify-content-end align-items-center">
       <ul class="d-flex">
-        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/home">Home</a></li>
         <li><a routerLink="/about">About</a></li>
         <li><a routerLink="/managment">Managment</a></li>
         <li><a href="">Shop</a></li>
         <li><a href="">Help</a></li>
       </ul>
-      <button class="default-button">
-        <i class="bi bi-cart-fill"></i> Your Cart
-      </button>
+      <a routerLink="/home/cart"
+        ><button class="default-button">
+          <i class="bi bi-cart-fill"></i> Your Cart
+        </button></a
+      >
     </div>
   </div>
 </header>

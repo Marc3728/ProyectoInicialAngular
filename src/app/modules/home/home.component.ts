@@ -4,6 +4,7 @@ import { Product } from './interface/Product';
 import { products } from 'src/app/DataJson';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductCart } from './interface/Cart';
 
 type Filter = 'lessPrice' | 'morePrice' | 'topRating';
 type Filters = {
@@ -16,14 +17,15 @@ type Filters = {
   styleUrls: ['../../app.component.scss'],
 })
 export class HomeComponent {
-  defaultProductIndex = 0;
   defaultProducts: Product[] = [];
   products: Product[] = [];
   product: Product = {} as Product;
-  filterPrice = 2;
-  filterTopRating = 5;
   activeFilter = '';
   isInCart = false;
+  private defaultProductIndex = 0;
+  private filterPrice = 2;
+  private filterTopRating = 5;
+  private cart: ProductCart[] = [];
 
   constructor(
     private productService: ProductService,
@@ -32,22 +34,8 @@ export class HomeComponent {
 
   ngOnInit() {
     this.loadProducts();
+    this.loadCart();
     this.checkAddedCart();
-    this.cartService.cart.length == 0 ? this.cartService.createCart() : null;
-  }
-
-  loadProducts() {
-    this.productService.getProducts();
-    this.productService.products$.subscribe(
-      (data) => {
-        this.defaultProducts = data;
-        this.products = [...this.defaultProducts];
-        this.product = this.products[this.defaultProductIndex];
-      },
-      (error) => {
-        console.log('Cant get data');
-      }
-    );
   }
 
   filterList: Filters = {
@@ -89,28 +77,44 @@ export class HomeComponent {
   }
 
   deleteProduct(product: Product) {
-    if (this.isLastProduct()) {
-      return;
-    }
-
-    this.products.splice(this.products.indexOf(product), 1);
-    this.product = this.products[this.defaultProductIndex];
+    this.productService.deleteProduct(product);
+    this.changeProduct(this.products[this.defaultProductIndex]);
   }
   checkAddedCart() {
     this.isInCart =
-      this.cartService
-        .getCart()
-        .find((p) => p.product.product == this.product.product) != undefined;
+      this.cart.find((p) => p.product.product == this.product.product) !=
+      undefined;
   }
 
   addCart(product: Product) {
     window.alert('add');
     this.cartService.addCart(product);
-    window.alert(this.cartService.getCart());
+    window.alert(this.cart);
     this.checkAddedCart();
   }
 
-  private isLastProduct() {
-    return this.products.length === 1;
+  private loadCart() {
+    this.cartService.cart$.subscribe(
+      (data) => {
+        this.cart = data;
+      },
+      (error) => {
+        console.log('Cant get data');
+      }
+    );
+  }
+
+  private loadProducts() {
+    this.productService.getProducts();
+    this.productService.products$.subscribe(
+      (data) => {
+        this.defaultProducts = data;
+        this.products = [...this.defaultProducts];
+        this.product = this.products[this.defaultProductIndex];
+      },
+      (error) => {
+        console.log('Cant get data');
+      }
+    );
   }
 }

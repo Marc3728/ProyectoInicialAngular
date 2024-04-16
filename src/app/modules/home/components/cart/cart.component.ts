@@ -13,16 +13,17 @@ export class CartComponent {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    this.getCart();
-  }
-
-  getCart() {
-    window.alert('hola');
-    this.cart = this.cartService.getCart();
+    this.cartService.cart$.subscribe(
+      (data) => {
+        this.cart = data;
+      },
+      (error) => {
+        console.log('Cant get data');
+      }
+    );
   }
 
   deleteProductCart(product: Product) {
     this.cartService.deleteProductCart(product);
-    this.getCart();
   }
 }

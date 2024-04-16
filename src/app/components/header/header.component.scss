@@ -6,6 +6,22 @@ header {
     border-color: white !important;
     color: white !important;
   }
+  .button-cart {
+    position: relative;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+    }
+  }
 }
 
 #supermarket-logo {

@@ -15,11 +15,14 @@
         <li><a href="">Shop</a></li>
         <li><a href="">Help</a></li>
       </ul>
-      <a routerLink="/home/cart"
+      <a routerLink="/home/cart" class="button-cart"
         ><button class="default-button">
           <i class="bi bi-cart-fill"></i> Your Cart
-        </button></a
-      >
+        </button>
+        <div>
+          <p>{{ cart.length }}</p>
+        </div>
+      </a>
     </div>
   </div>
 </header>

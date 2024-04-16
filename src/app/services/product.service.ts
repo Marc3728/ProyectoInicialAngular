@@ -13,6 +13,8 @@ export class ProductService {
     Product[]
   >([]);
 
+  private _products: Product[] = [];
+
   public products$ = this.products.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -22,6 +24,19 @@ export class ProductService {
       .get<Product[]>('assets/data/DataProducts.json')
       .subscribe((data) => {
         this.products.next(data);
+        this._products = data;
       });
+  }
+
+  deleteProduct(product: Product) {
+    if (this.isLastProduct()) {
+      return;
+    }
+    this._products.splice(this._products.indexOf(product), 1);
+    this.products.next(this._products);
+  }
+
+  private isLastProduct() {
+    return this._products.length === 1;
   }
 }

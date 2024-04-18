@@ -35,7 +35,7 @@ export class HomeComponent {
   ngOnInit() {
     this.loadProducts();
     this.loadCart();
-    this.checkAddedCart();
+    console.log(this.product);
   }
 
   filterList: Filters = {
@@ -81,8 +81,9 @@ export class HomeComponent {
     this.changeProduct(this.products[this.defaultProductIndex]);
   }
   checkAddedCart() {
+    console.log(this.product?.product);
     this.isInCart =
-      this.cart.find((p) => p.product.product == this.product.product) !=
+      this.cart.find((p) => p.product.product == this.product?.product) !=
       undefined;
   }
 
@@ -105,12 +106,14 @@ export class HomeComponent {
   }
 
   private loadProducts() {
-    this.productService.getProducts();
+    //this.productService.getProducts();
     this.productService.products$.subscribe(
       (data) => {
+        console.log(data);
         this.defaultProducts = data;
         this.products = [...this.defaultProducts];
         this.product = this.products[this.defaultProductIndex];
+        this.checkAddedCart();
       },
       (error) => {
         console.log('Cant get data');

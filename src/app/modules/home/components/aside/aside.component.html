@@ -53,8 +53,11 @@
   >
     Reset Filter
   </button>
-  <div class="w-100">
-    <h3 class="mt-4">Products</h3>
+  <div class="w-100 d-flex flex-column">
+    <a routerLink="/home/create-project"
+      ><button class="button-add-product">ADD PRODUCT</button></a
+    >
+    <strong style="font-size: 2em">Products</strong>
     <div
       *ngFor="let product of products"
       (click)="changeProduct(product)"

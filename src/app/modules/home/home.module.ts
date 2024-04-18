@@ -12,6 +12,8 @@ import { DateFormatInterceptor } from 'src/app/interceptors/date-format.intercep
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
+import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,14 @@ import { CartComponent } from './components/cart/cart.component';
     ReviewComponent,
     AsideComponent,
     CartComponent,
+    CreateProjectComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
   providers: [],
 })

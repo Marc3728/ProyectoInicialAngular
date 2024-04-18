@@ -19,7 +19,7 @@
         ><button class="default-button">
           <i class="bi bi-cart-fill"></i> Your Cart
         </button>
-        <div>
+        <div *ngIf="cart.length">
           <p>{{ cart.length }}</p>
         </div>
       </a>

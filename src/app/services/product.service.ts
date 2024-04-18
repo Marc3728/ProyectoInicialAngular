@@ -17,7 +17,9 @@ export class ProductService {
 
   public products$ = this.products.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getProducts();
+  }
 
   getProducts(): void {
     this.http
@@ -34,6 +36,11 @@ export class ProductService {
     }
     this._products.splice(this._products.indexOf(product), 1);
     this.products.next(this._products);
+  }
+  addProduct(product: Product) {
+    this._products.push(product);
+    this.products.next(this._products);
+    console.log(this._products);
   }
 
   private isLastProduct() {

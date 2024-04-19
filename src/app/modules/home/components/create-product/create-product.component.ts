@@ -5,10 +5,10 @@ import { Product } from '../../interface/Product';
 
 @Component({
   selector: 'app-create-project',
-  templateUrl: './create-project.component.html',
-  styleUrls: ['./create-project.component.scss'],
+  templateUrl: './create-product.component.html',
+  styleUrls: ['./create-product.component.scss'],
 })
-export class CreateProjectComponent {
+export class CreateProductComponent {
   formSubmited = false;
   saved = false;
   products: Product[] = [];

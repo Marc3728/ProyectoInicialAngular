@@ -12,7 +12,7 @@ import { DateFormatInterceptor } from 'src/app/interceptors/date-format.intercep
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
-import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReviewComponent,
     AsideComponent,
     CartComponent,
-    CreateProjectComponent,
+    CreateProductComponent,
   ],
   imports: [
     CommonModule,

@@ -59,7 +59,7 @@
     >
     <strong style="font-size: 2em">Products</strong>
     <div
-      *ngFor="let product of products"
+      *ngFor="let product of products.all"
       (click)="changeProduct(product)"
       class="products-container d-flex mt-4"
     >

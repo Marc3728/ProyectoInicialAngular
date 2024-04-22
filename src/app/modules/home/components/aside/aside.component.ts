@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../../interface/Product';
+import { Product } from '../../models/Product';
+import { ProductList } from '../../models/ProductList';
 
 @Component({
   selector: 'app-aside',
@@ -7,7 +8,7 @@ import { Product } from '../../interface/Product';
   styleUrls: ['./aside.component.scss', '../../../../app.component.scss'],
 })
 export class AsideComponent {
-  @Input() products: Product[] = {} as Product[];
+  @Input() products: ProductList = {} as ProductList;
   @Input() productSelected: Product = {} as Product;
   @Input() activeFilter: String = {} as String;
   @Output() onChangeProduct: EventEmitter<Product> = new EventEmitter();

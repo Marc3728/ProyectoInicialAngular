@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from '../../interface/Product';
+import { Product } from '../../models/Product';
+import { ProductList } from '../../models/ProductList';
 
 @Component({
   selector: 'app-create-project',
@@ -11,7 +12,7 @@ import { Product } from '../../interface/Product';
 export class CreateProductComponent {
   formSubmited = false;
   saved = false;
-  products: Product[] = [];
+  products: ProductList = new ProductList([]);
   similarProducts: Product[] = [];
 
   productForm: FormGroup = this.formBuilder.group({
@@ -71,7 +72,7 @@ export class CreateProductComponent {
 
   addSimilarProduct(product: Product) {
     if (this.checkAddedCart(product)) {
-      this.similarProducts.splice(this.products.indexOf(product), 1);
+      this.similarProducts.splice(this.products.all.indexOf(product), 1);
       return;
     }
 

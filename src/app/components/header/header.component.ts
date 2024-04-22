@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartComponent } from 'src/app/modules/home/components/cart/cart.component';
-import { ProductCart } from 'src/app/modules/home/interface/Cart';
+import { Cart } from 'src/app/modules/home/models/Cart';
+import { CartList } from 'src/app/modules/home/models/CartList';
 import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./header.component.scss', '../../app.component.scss'],
 })
 export class HeaderComponent {
-  cart: ProductCart[] = [];
+  cart: CartList = new CartList([]);
   constructor(private cartService: CartService) {}
   ngOnInit() {
     this.cartService.cart$.subscribe(

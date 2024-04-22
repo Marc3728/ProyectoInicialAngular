@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Product } from './interface/Product';
+import { Product } from './models/Product';
 import { products } from 'src/app/DataJson';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart/cart.service';
-import { ProductCart } from './interface/Cart';
+import { Cart } from './models/Cart';
+import { ProductList } from './models/ProductList';
+import { CartList } from './models/CartList';
 
 type Filter = 'lessPrice' | 'morePrice' | 'topRating';
 type Filters = {
@@ -17,15 +19,15 @@ type Filters = {
   styleUrls: ['../../app.component.scss'],
 })
 export class HomeComponent {
-  defaultProducts: Product[] = [];
-  products: Product[] = [];
+  defaultProducts: ProductList = new ProductList([]);
+  products: ProductList = new ProductList([]);
   product: Product = {} as Product;
   activeFilter = '';
   isInCart = false;
   private defaultProductIndex = 0;
   private filterPrice = 2;
   private filterTopRating = 5;
-  private cart: ProductCart[] = [];
+  private cart: CartList = new CartList([]);
 
   constructor(
     private productService: ProductService,
@@ -40,17 +42,17 @@ export class HomeComponent {
 
   filterList: Filters = {
     lessPrice: () => {
-      this.products = this.defaultProducts.filter(
+      this.products.all = this.defaultProducts.all.filter(
         (product) => product.price < this.filterPrice
       );
     },
     morePrice: () => {
-      this.products = this.defaultProducts.filter(
+      this.products.all = this.defaultProducts.all.filter(
         (product) => product.price >= this.filterPrice
       );
     },
     topRating: () => {
-      this.products = this.defaultProducts.filter(
+      this.products.all = this.defaultProducts.all.filter(
         (product) => product.rating == this.filterTopRating
       );
     },
@@ -78,12 +80,12 @@ export class HomeComponent {
 
   deleteProduct(product: Product) {
     this.productService.deleteProduct(product);
-    this.changeProduct(this.products[this.defaultProductIndex]);
+    this.changeProduct(this.products.all[this.defaultProductIndex]);
   }
   checkAddedCart() {
     console.log(this.product?.product);
     this.isInCart =
-      this.cart.find((p) => p.product.product == this.product?.product) !=
+      this.cart.all.find((p) => p.product.product == this.product?.product) !=
       undefined;
   }
 
@@ -111,8 +113,8 @@ export class HomeComponent {
       (data) => {
         console.log(data);
         this.defaultProducts = data;
-        this.products = [...this.defaultProducts];
-        this.product = this.products[this.defaultProductIndex];
+        this.products.all = [...this.defaultProducts.all];
+        this.product = this.products.all[this.defaultProductIndex];
         this.checkAddedCart();
       },
       (error) => {

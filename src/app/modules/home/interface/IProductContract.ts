@@ -1,6 +1,6 @@
-import { Review } from './Review';
+import { IReviewContract } from './IReviewContract';
 
-export interface Product {
+export interface IProductContract {
   product: String;
   price: number;
   currency: String;
@@ -9,5 +9,5 @@ export interface Product {
   img: String;
   favorite: boolean;
   similarProducts: any[];
-  reviews: Review[] | null;
+  reviews: IReviewContract[] | null;
 }

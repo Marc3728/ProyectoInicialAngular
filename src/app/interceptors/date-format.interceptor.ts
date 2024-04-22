@@ -7,7 +7,7 @@ import {
   HttpResponse,
 } from '@angular/common/http';
 import { Observable, map, tap, throwError } from 'rxjs';
-import { Product } from '../modules/home/interface/Product';
+import { Product } from '../modules/home/models/Product';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 

@@ -20,7 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ProductDetailComponent,
     SimilarProductComponent,
-    StarsRatingComponent,
+
     ReviewComponent,
     AsideComponent,
     CartComponent,
@@ -31,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    StarsRatingComponent,
   ],
   exports: [],
   providers: [],

@@ -8,7 +8,7 @@ describe('AboutCardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AboutCardComponent]
+      declarations: [AboutCardComponent],
     });
     fixture = TestBed.createComponent(AboutCardComponent);
     component = fixture.componentInstance;
@@ -17,5 +17,9 @@ describe('AboutCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('exists card', () => {
+    expect(component.card).toBeDefined();
   });
 });

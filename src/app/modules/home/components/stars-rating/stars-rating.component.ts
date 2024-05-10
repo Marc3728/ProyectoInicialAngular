@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-stars-rating',
   templateUrl: './stars-rating.component.html',
   styleUrls: ['./stars-rating.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class StarsRatingComponent {
   @Input() starsRating: number = 5;

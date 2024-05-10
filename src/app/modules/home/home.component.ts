@@ -61,12 +61,13 @@ export class HomeComponent {
   changeFilter(filter: string) {
     if (filter == '' || this.activeFilter == filter) {
       this.activeFilter = '';
-      this.products = this.defaultProducts;
+      this.products.all = this.defaultProducts.all;
       return;
     }
 
     this.activeFilter = filter;
-    this.filterList[filter as Filter]();
+    this.products.all = this.defaultProducts.filterList[filter as Filter]();
+    //this.filterList[filter as Filter]();
   }
 
   changeProduct(productChange: Product) {
